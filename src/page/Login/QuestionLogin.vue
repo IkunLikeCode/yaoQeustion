@@ -1,12 +1,8 @@
-<script setup lang="ts">
-import { ElForm, ElFormItem, ElInput, ElButton } from "element-plus";
-</script>
+<script setup lang="ts"></script>
 
 <template>
   <div class="login">
-    <div class="container">
-      <el-form> </el-form>
-    </div>
+    <div class="container"></div>
   </div>
 </template>
 

@@ -1,9 +1,8 @@
-:root{
-  
+:root {
 }
 html.light {
   --menu-item-bg-color: #1677ff;
-  --menu-item-font-color:#fff
+  --menu-item-font-color: #fff;
 }
 
 html.dark {
