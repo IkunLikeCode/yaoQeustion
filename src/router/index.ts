@@ -7,7 +7,6 @@ const loadAllPageInfos = async () => {
   const pageInfos: RouteRecordRaw[] = [];
   // 这里可以扩展为自动扫描所有 pageInfo 文件
   const pageInfoFiles = import.meta.glob("../page/**/pageInfo.ts");
-  console.log(pageInfoFiles);
   for (const path in pageInfoFiles) {
     if (path.endsWith("/pageInfo.ts")) {
       const result: any = await pageInfoFiles[path]!();

@@ -1,24 +1,29 @@
 <script setup lang="ts">
-import { ElForm, ElFormItem, ElInput, ElButton } from "element-plus";
+import { ElForm, ElFormItem, ElInput, ElButton, ElMessage } from "element-plus";
 import { reactive, useTemplateRef } from "vue";
 import type { FormInstance, FormRules } from "element-plus";
+import { useUserStore } from "@/store/module/user/userStore";
+import { useRouter } from "vue-router";
+import { usernameValidate, loginIdValidate } from "@/utils/formValidate";
+const router = useRouter();
+const userStore = useUserStore();
 const formRef = useTemplateRef<FormInstance>("formRef");
 const formData = reactive({
-  username: "",
-  password: "",
-  confirmPassword: "",
-  loginId: ""
+  username: "小帅",
+  password: "yaobo2003",
+  confirmPassword: "yaobo2003",
+  loginId: "1517097077"
 });
 
 const rules = reactive<FormRules<typeof formData>>({
-  loginId: [
-    { required: true, message: "请输入账号", trigger: "blur" },
-    { validator: loginIdValidate, trigger: "change" }
-  ],
   username: [
     { required: true, message: "请输入用户名", trigger: "blur" },
     { min: 2, max: 12, message: "用户名长度必须在2到12位之间", trigger: "blur" },
     { validator: usernameValidate, trigger: "change" }
+  ],
+  loginId: [
+    { required: true, message: "请输入账号", trigger: "blur" },
+    { validator: loginIdValidate, trigger: "change" }
   ],
   password: [
     { required: true, message: "请输入密码", trigger: "blur" },
@@ -26,8 +31,8 @@ const rules = reactive<FormRules<typeof formData>>({
   ],
   confirmPassword: [
     { required: true, message: "请确认密码", trigger: "blur" },
-    { validator: confirmPasswordValidate, trigger: "blur" },
-    { min: 6, max: 12, message: "密码长度必须在6到12位之间", trigger: "blur" }
+    { min: 6, max: 12, message: "密码长度必须在6到12位之间", trigger: "blur" },
+    { validator: confirmPasswordValidate, trigger: "change" }
   ]
 });
 
@@ -38,31 +43,20 @@ function confirmPasswordValidate(_rule: any, value: string, callback: any) {
     callback();
   }
 }
-function loginIdValidate(_rule: any, value: string, callback: any) {
-  const loginCount = String(value).length;
-  if (loginCount < 6 || loginCount > 12) {
-    callback(new Error("账号长度必须在6到12位之间"));
-  }
-}
-function usernameValidate(_rule: any, value: string, callback: any) {
-  // 不能包含特殊字符 比如< > 可以包含中文
-  const usernameRegex = /^[a-zA-Z0-9_\u4e00-\u9fa5]+$/;
-  if (!usernameRegex.test(value)) {
-    callback(new Error("用户名不能包含特殊字符"));
-  } else {
-    callback();
-  }
-}
 
-function register(ruleFormRef: FormInstance | null) {
+async function register(ruleFormRef: FormInstance | null) {
   if (ruleFormRef) {
-    ruleFormRef.validate(valid => {
-      if (valid) {
-        console.log("表单验证通过");
-      } else {
-        console.log("表单验证失败");
+    const valid = await ruleFormRef.validate();
+    if (valid) {
+      try {
+        await userStore.userRegister(formData);
+        router.push("/login");
+      } catch (error: any) {
+        ElMessage.error(error.message || "注册失败");
       }
-    });
+    } else {
+      ElMessage.error("请填写完整信息");
+    }
   }
 }
 </script>
@@ -73,7 +67,7 @@ function register(ruleFormRef: FormInstance | null) {
       <div class="title">用户注册</div>
       <el-form ref="formRef" :rules="rules" :model="formData" label-position="right" class="form">
         <el-form-item label="账号:" prop="loginId" label-width="90px">
-          <el-input v-model.number="formData.loginId" class="input" placeholder="请输入账号"></el-input>
+          <el-input v-model.trim="formData.loginId" class="input" placeholder="请输入账号"></el-input>
         </el-form-item>
         <el-form-item label="用户名:" prop="username" label-width="90px">
           <el-input v-model.trim="formData.username" class="input" type="text" placeholder="请输入用户名"></el-input>
@@ -109,7 +103,7 @@ function register(ruleFormRef: FormInstance | null) {
 .register {
   height: 100vh;
   width: 100%;
-  background: linear-gradient(to right, #00c6fb, #3b80ef);
+  background: linear-gradient(to right, #30cfd0, #9a7dbe);
   display: flex;
   flex-direction: column;
   gap: 30px;

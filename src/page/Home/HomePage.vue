@@ -1,11 +1,17 @@
 <script setup lang="ts">
 import { ElButton } from "element-plus";
+import { useUserStore } from "@/store/module/user/userStore";
+import { computed } from "vue";
+
+const userStore = useUserStore();
+
+const isLogin = computed(() => userStore.isLogin);
 </script>
 
 <template>
   <div class="HomePage">
     <div class="title">逍遥问卷</div>
-    <router-link to="/login">
+    <router-link :to="isLogin ? '/manage' : '/login'">
       <el-button class="start-btn">开始使用</el-button>
     </router-link>
   </div>
