@@ -43,7 +43,7 @@ export const useUserStore = defineStore("user", {
       try {
         const res = await login<LoginSuccessType>(data);
         setLocalStorage("questionToken", res.token);
-        this.isLogin = true;
+
         // 登录成功后获取用户信息
         await this.getUserInfo();
       } catch (error: any) {
@@ -53,17 +53,17 @@ export const useUserStore = defineStore("user", {
     },
     // 获取用户信息
     async getUserInfo() {
+      // eslint-disable-next-line no-useless-catch
       try {
         const { data: userInfo } = await getUserInfo<UserInfoType>();
-        console.log(userInfo);
         this.userInfo = {
           id: userInfo.id,
           avatar: userInfo.avatar,
           nickname: userInfo.nickname,
           username: userInfo.username
         };
+        this.isLogin = true;
       } catch (error: any) {
-        console.log(error.message);
         throw error; // 重新抛出错误，让组件能够捕获
       }
     }

@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 import type { RouteRecordRaw } from "vue-router";
-
+import { useUserStore } from "@/store/module/user/userStore";
+import { getLocalStorage, removeLocalStorage } from "@/utils/localStoreage";
 // 动态导入所有 pageInfo 文件的函数
 const loadAllPageInfos = async () => {
   // 目前已知的 pageInfo 文件
@@ -15,10 +16,11 @@ const loadAllPageInfos = async () => {
   }
   return pageInfos;
 };
+// 登录后不让访问的页面
+const loginRestrictedPaths = ["/login", "/register"];
 
 // 获取所有页面配置
 const pageInfos = await loadAllPageInfos();
-
 const routes: RouteRecordRaw[] = [
   {
     path: "/",
@@ -34,6 +36,42 @@ const routes: RouteRecordRaw[] = [
 const router = createRouter({
   history: createWebHistory(),
   routes
+});
+router.beforeEach(async (to, from, next) => {
+  // 动态获取最新的token
+  const questionToken = getLocalStorage("questionToken");
+  // 如果没有token说明一定没有登录
+  if (!questionToken) {
+    // 如果访问的不是登录页，重定向到登录页
+    if (to.path !== "/login") {
+      next({ path: "/login" });
+    } else {
+      next();
+    }
+    return;
+  }
+  // 如果有token那么要验证token是否过期
+  // 还要验证现在是否是登录状态,如果是登录状态,那么token过期也没有关系
+  const userStore = useUserStore();
+  if (questionToken) {
+    try {
+      if (loginRestrictedPaths.includes(to.path)) {
+        next({ path: "/home" });
+        return;
+      }
+      // 验证token是否过期 如果过期会抛出异常
+      await userStore.getUserInfo();
+      next();
+    } catch (error: any) {
+      if (!error.success) {
+        // 说明token过期了,需要重新登录
+        removeLocalStorage("questionToken");
+        next({ path: "/login" });
+        return;
+      }
+      next();
+    }
+  }
 });
 
 export default router;

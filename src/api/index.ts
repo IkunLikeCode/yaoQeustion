@@ -34,7 +34,6 @@ class Request {
             ElMessage.error(response.data.data.msg || "请求失败");
           }
         } else if (response.data && response.data.errno !== 0) {
-          ElMessage.error(response.data.data.msg || "请求失败");
           return Promise.reject(response.data);
         }
       },
@@ -52,7 +51,7 @@ class Request {
           resolve(res as T);
         })
         .catch(err => {
-          reject(new Error(err.message || err.response?.data?.message || "请求失败"));
+          reject(err);
         });
     });
   }
