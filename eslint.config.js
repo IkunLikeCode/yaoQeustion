@@ -11,11 +11,11 @@ const ignore = ["**/node_modules/**", "dist/**/*", ".*", "**/*.d.{ts,js}"];
 export default [
   // 忽略文件配置
   {
-    ignores: ignore,
+    ignores: ignore
   },
   // 基础配置
   eslint.configs.recommended,
-  // TypeScript配置
+  // TypeScript配置 允许使用any
   ...tseslint.configs.recommended,
   // Vue 推荐规则（Flat Config）
   ...eslintConfigVue.configs["flat/recommended"],
@@ -30,21 +30,22 @@ export default [
         // 让 <script lang="ts"> 使用 TypeScript 解析器
         parser: tseslint.parser,
         ecmaVersion: "latest",
-        sourceType: "module",
+        sourceType: "module"
       },
       globals: {
         ...globals.browser,
-        ...globals.node,
-      },
+        ...globals.node
+      }
     },
     rules: {
       "no-var": "error",
       // 在编辑器中将 Prettier 报错为警告，便于统一格式
       "prettier/prettier": "warn",
+      "@typescript-eslint/no-explicit-any": "off"
     },
     plugins: {
       prettier: eslintPluginPrettier,
-      vue: eslintConfigVue,
-    },
-  },
+      vue: eslintConfigVue
+    }
+  }
 ];

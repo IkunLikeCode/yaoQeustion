@@ -5,10 +5,11 @@
     { "path": "./tsconfig.node.json" }
   ],
   "compilerOptions": {
-    "baseUrl": ".",
-    "types": ["vite/client"],
+    "types": ["node"],
+    "lib": ["esnext"],
+     "baseUrl": "./src",
     "paths": {
-      "@/*": ["src/*"]
-    }
-  }
+      "@/*": ["./*"]
+    },
+  },
 }

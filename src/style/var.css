@@ -1,0 +1,11 @@
+:root{
+  
+}
+html.light {
+  --menu-item-bg-color: #1677ff;
+  --menu-item-font-color:#fff
+}
+
+html.dark {
+  --menu-item-bg-color: #1677ff;
+}

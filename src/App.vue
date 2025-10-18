@@ -1,12 +1,9 @@
-<script setup lang="ts">
-import { ref } from "vue";
-
-const count = ref(0);
-console.log(count.value);
-</script>
+<script setup lang="ts"></script>
 
 <template>
-  <div class="app"></div>
+  <div class="app">
+    <router-view></router-view>
+  </div>
 </template>
 
 <style scoped></style>
