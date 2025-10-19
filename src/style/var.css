@@ -1,6 +1,13 @@
 :root {
 }
+.display {
+ display: flex;
+ align-items: center;
+ justify-content: center;
+}
+
 html.light {
+  --main-color: #1677ff;
   --menu-item-bg-color: #1677ff;
   --menu-item-font-color: #fff;
   --log-bg-color: #fff;
@@ -8,7 +15,9 @@ html.light {
 }
 
 html.dark {
+  --main-color: #1677ff;
   --menu-item-bg-color: #1677ff;
+  --menu-item-font-color: #fff;
   --log-bg-color: #fff;
   --log-title-color: #fff;
 }

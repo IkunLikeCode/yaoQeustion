@@ -66,8 +66,9 @@ router.beforeEach(async (to, _from, next) => {
         next({ path: "/home" });
         return;
       }
-      // 验证token是否过期 如果过期会抛出异常
-      await userStore.getUserInfo();
+      if (!userStore.isLogin) {
+        await userStore.getUserInfo();
+      }
       next();
     } catch (error: any) {
       if (!error.success) {
