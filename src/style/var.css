@@ -3,8 +3,12 @@
 html.light {
   --menu-item-bg-color: #1677ff;
   --menu-item-font-color: #fff;
+  --log-bg-color: #fff;
+  --log-title-color: #fff;
 }
 
 html.dark {
   --menu-item-bg-color: #1677ff;
+  --log-bg-color: #fff;
+  --log-title-color: #fff;
 }

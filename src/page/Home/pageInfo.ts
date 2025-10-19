@@ -4,7 +4,8 @@ export default {
   name: "Home",
   meta: {
     title: "首页",
-    icon: "home"
+    icon: "home",
+    isChild: true
   },
   component: () => import("@/page/Home/HomePage.vue")
 } as RouteRecordRaw;

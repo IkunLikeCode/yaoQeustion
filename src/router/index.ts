@@ -3,24 +3,30 @@ import type { RouteRecordRaw } from "vue-router";
 import { useUserStore } from "@/store/module/user/userStore";
 import { getLocalStorage, removeLocalStorage } from "@/utils/localStoreage";
 // 动态导入所有 pageInfo 文件的函数
+
+// 所有子路由配置
+const pageInfosList: RouteRecordRaw[] = [];
+// 所有根路由配置
+const rootInfoList: RouteRecordRaw[] = [];
 const loadAllPageInfos = async () => {
   // 目前已知的 pageInfo 文件
-  const pageInfos: RouteRecordRaw[] = [];
   // 这里可以扩展为自动扫描所有 pageInfo 文件
   const pageInfoFiles = import.meta.glob("../page/**/pageInfo.ts");
   for (const path in pageInfoFiles) {
     if (path.endsWith("/pageInfo.ts")) {
       const result: any = await pageInfoFiles[path]!();
-      pageInfos.push(result.default);
+      if (result.default.meta.isChild) {
+        pageInfosList.push(result.default);
+      } else {
+        rootInfoList.push(result.default);
+      }
     }
   }
-  return pageInfos;
+  return pageInfosList;
 };
 // 登录后不让访问的页面
 const loginRestrictedPaths = ["/login", "/register"];
-
-// 获取所有页面配置
-const pageInfos = await loadAllPageInfos();
+await loadAllPageInfos();
 const routes: RouteRecordRaw[] = [
   {
     path: "/",
@@ -28,16 +34,17 @@ const routes: RouteRecordRaw[] = [
     redirect: "/home",
     children: [
       // 将所有 pageInfo 配置添加到路由中
-      ...pageInfos
+      ...pageInfosList
     ]
-  }
+  },
+  ...rootInfoList
 ];
 
 const router = createRouter({
   history: createWebHistory(),
   routes
 });
-router.beforeEach(async (to, from, next) => {
+router.beforeEach(async (to, _from, next) => {
   // 动态获取最新的token
   const questionToken = getLocalStorage("questionToken");
   // 如果没有token说明一定没有登录

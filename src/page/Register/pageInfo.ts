@@ -5,7 +5,8 @@ export default {
   name: "Register",
   meta: {
     title: "注册",
-    icon: "register"
+    icon: "register",
+    isChild: true
   },
   component: () => import("@/page/Register/QuestionRegister.vue")
 } as RouteRecordRaw;

@@ -6,47 +6,53 @@ const route = useRoute();
 const menuList: ManageLayoutProps["menuList"] = [
   {
     title: "新建问卷",
-    path: "question/edit",
+    path: "/question/edit",
     icon: "icon-jia"
   },
   {
     title: "我的问卷",
-    path: "manage/list",
+    path: "/manage/listQuestion",
     icon: "icon-wode"
   },
   {
     title: "星标问卷",
-    path: "manage/star",
+    path: "/manage/starQuestion",
     icon: "icon-biaoxing"
   },
   {
     title: "回收站",
-    path: "manage/recycle",
+    path: "/manage/recycleBin",
     icon: "icon-huishouzhan"
   }
 ];
 </script>
 
 <template>
-  <el-menu class="menu-list">
-    <el-menu-item class="first-item" :index="menuList[0]!.path">
+  <div class="menu-list">
+    <router-link class="first-item" :to="menuList[0]!.path">
       <i class="iconfont" :class="menuList[0]!.icon"></i>
       <span>{{ menuList[0]!.title }}</span>
-    </el-menu-item>
-    <el-menu-item
-      v-for="menuItem in menuList.slice(1)"
-      :key="menuItem.path"
-      class="menu-item"
-      :index="menuItem.path"
-      :class="route.path === menuItem.path ? 'active' : ''"
-    >
-      <i class="iconfont" :class="menuItem.icon"></i>
-      <span>{{ menuItem.title }}</span>
-    </el-menu-item>
-  </el-menu>
+    </router-link>
+    <el-menu router :default-active="route.path">
+      <el-menu-item
+        v-for="menuItem in menuList.slice(1)"
+        :key="menuItem.path"
+        class="menu-item"
+        :index="menuItem.path"
+        :class="route.path === menuItem.path ? 'active' : ''"
+      >
+        <i class="iconfont" :class="menuItem.icon"></i>
+        <span>{{ menuItem.title }}</span>
+      </el-menu-item>
+    </el-menu>
+  </div>
 </template>
 
 <style lang="less" scoped>
+:deep(.el-menu) {
+  border: none;
+  border-right: none;
+}
 .menu-list {
   height: 100%;
   border: none;
@@ -64,6 +70,9 @@ const menuList: ManageLayoutProps["menuList"] = [
     font-weight: 600px;
     user-select: none;
     justify-content: center;
+    margin-bottom: 50px;
+    cursor: pointer;
+    text-decoration: none;
     span {
       margin-left: 5px;
     }

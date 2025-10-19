@@ -5,7 +5,8 @@ export default {
   name: "Login",
   meta: {
     title: "登录",
-    icon: "login"
+    icon: "login",
+    isChild: true
   },
   component: () => import("@/page/Login/QuestionLogin.vue")
 } as RouteRecordRaw;

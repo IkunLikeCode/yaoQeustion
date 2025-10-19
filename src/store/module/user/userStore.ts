@@ -43,7 +43,6 @@ export const useUserStore = defineStore("user", {
       try {
         const res = await login<LoginSuccessType>(data);
         setLocalStorage("questionToken", res.token);
-
         // 登录成功后获取用户信息
         await this.getUserInfo();
       } catch (error: any) {

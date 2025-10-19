@@ -4,7 +4,8 @@ export default {
   name: "Manage",
   meta: {
     title: "管理问卷",
-    icon: "manage"
+    icon: "manage",
+    isChild: true
   },
   component: () => import("@/layout/ManageLayout/ManageLayout.vue"),
   redirect: "/manage/listQuestion",
