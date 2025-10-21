@@ -9,5 +9,6 @@
   width: 20%;
   height: 100%;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  background-color: var(--right-panel-bg-color);
 }
 </style>

@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import TitleEdit from "./components/TitleEdit.vue";
+import ToolBar from "./components/ToolBar.vue";
 </script>
 
 <template>
@@ -8,7 +9,9 @@ import TitleEdit from "./components/TitleEdit.vue";
       <router-link to="/manage" class="goBack">返回</router-link>
       <TitleEdit />
     </div>
-    <div class="center"></div>
+    <div class="center">
+      <ToolBar />
+    </div>
     <div class="right"></div>
   </div>
 </template>
@@ -21,16 +24,26 @@ import TitleEdit from "./components/TitleEdit.vue";
   padding: 30px;
   box-sizing: border-box;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  justify-content: space-between;
+  width: 100%;
+  .center {
+    width: 40%;
+    display: flex;
+    justify-content: center;
+  }
   .left {
     display: flex;
     align-items: center;
-    justify-content: center;
     gap: 20px;
+    width: 25%;
     .goBack {
       color: var(--main-color);
       font-size: 16px;
       text-decoration: none;
     }
+  }
+  .right {
+    width: 25%;
   }
 }
 </style>

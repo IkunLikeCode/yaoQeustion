@@ -11,6 +11,8 @@ declare module 'vue' {
     ElButton: typeof import('element-plus/es')['ElButton']
     LogCom: typeof import('./src/components/log/logCom.vue')['default']
     OptionsCom: typeof import('./src/components/options/optionsCom.vue')['default']
+    QuestionInput: typeof import('./src/components/QuestionComponents/QuestionInput/QuestionInput.vue')['default']
+    QuestionTitle: typeof import('./src/components/QuestionComponents/QuestionTitle/QuestionTitle.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
   }

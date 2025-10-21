@@ -23,13 +23,14 @@ import EditCanvas from "./components/EditCanvas/EditCanvas.vue";
   height: calc(100vh - 60px);
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   gap: 20px;
   padding: 20px;
   box-sizing: border-box;
+  background-color: #f5f5f5;
 
   .center {
-    width: 60%;
+    width: 50%;
     height: 100%;
     background-color: #f5f5f5;
   }
