@@ -40,6 +40,25 @@ const activeTab = ref("componentLib");
   background-color: var(--left-panel-bg-color);
   padding: 0 10px;
   box-sizing: border-box;
+  overflow-y: auto;
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: rgba(54, 54, 54, 0.1);
+    border-radius: 3px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: rgba(59, 58, 58, 0.3);
+    border-radius: 3px;
+    transition: background 0.2s ease;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.5);
+  }
   .tab-label {
     display: flex;
     align-items: center;

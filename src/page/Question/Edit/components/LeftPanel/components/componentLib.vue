@@ -3,19 +3,21 @@
 import { componentGroup, type ComponentConfType } from "@/components/QuestionComponents";
 import { useQuestionStore } from "@/store/module/question";
 import randomId from "@/utils/radomId";
-
+import deepClone from "@/utils/deepClone";
 /**
  * 添加组件
  * @param component 组件配置
  */
 function addComponent(component: ComponentConfType) {
+  console.log(component.defaultProps);
+
   useQuestionStore().addComponent({
     fe_id: randomId(),
     title: component.title || "",
     type: component.type || "",
     isHide: false,
     isLock: false,
-    props: component.defaultProps || {}
+    props: deepClone(component.defaultProps || {})
   });
 }
 </script>
@@ -43,13 +45,11 @@ function addComponent(component: ComponentConfType) {
   height: 100%;
   box-sizing: border-box;
   .componentItem {
-    margin-bottom: 10px;
     .groupTitle {
       font-size: 16px;
       font-weight: bold;
     }
     .componentList {
-      margin-top: 10px;
       padding: 0 2px;
       .component {
         width: 100%;
@@ -58,9 +58,10 @@ function addComponent(component: ComponentConfType) {
         box-sizing: border-box;
         user-select: none;
         cursor: pointer;
-        background-color: #ececec;
+        margin: 20px 0;
+        background-color: var(--componentsLib-item-bg-color);
         &:hover {
-          outline: 1px solid #ccc;
+          outline: 1px solid var(--componentsLib-item-hover-color);
         }
       }
     }

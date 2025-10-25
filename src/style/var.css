@@ -18,7 +18,13 @@ html.light {
   --center-panel-bg-color: #fff;
   --question-title-color: #000;
   --question-hover-border-color: #dedede;
-  --question-avtive-color:#1677ff;
+  --question-avtive-color: #1677ff;
+
+  /* 组件库列表 开始*/
+  /* 组件库列表每一个组件的背景颜色 */
+  --componentsLib-item-bg-color: #f8f8f8;
+  --componentsLib-item-hover-color: #ebebeb;
+  /* 组件库列表 结束*/
 }
 
 html.dark {
@@ -33,5 +39,12 @@ html.dark {
   --center-panel-bg-color: #222;
   --question-title-color: #fff;
   --question-hover-border-color: #dedede;
-  --question-avtive-color:#1677ff;
+  --question-avtive-color: #1677ff;
+  /* 组件库列表每一个组件的背景颜色 */
+
+  /* 组件库列表 开始*/
+  /* 组件库列表每一个组件的hover颜色 */
+  --componentsLib-item-bg-color: #333;
+  --componentsLib-item-hover-color: #f7f7f7;
+  /* 组件库列表 结束*/
 }

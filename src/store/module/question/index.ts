@@ -134,6 +134,18 @@ export const useQuestionStore = defineStore("question", {
           this.selectedId = this.componentsList?.[index + 1]?.fe_id || "";
         }
       }
+    },
+
+    /**
+     * 更新组件属性
+     * @param fe_id 组件id
+     * @param newProps 新的属性
+     */
+    updateComponentProps(fe_id: string, newProps: Partial<ComponentPropsType>) {
+      const component = this.componentsList.find(item => item.fe_id === fe_id);
+      if (!component) return;
+      // 更新组件属性
+      component.props = { ...component.props, ...newProps };
     }
   }
 });

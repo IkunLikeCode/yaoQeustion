@@ -22,7 +22,7 @@ function clickCanvasComponent(componentItem: ComponentInfoType) {
           :class="componentItem.fe_id === qeustionStore.selectedId ? 'active' : ''"
           @click="clickCanvasComponent(componentItem)"
         >
-          <component :is="getComponentByType(componentItem.type)?.Component" />
+          <component :is="getComponentByType(componentItem.type)?.Component" v-bind="componentItem.props" />
         </div>
       </template>
     </div>
