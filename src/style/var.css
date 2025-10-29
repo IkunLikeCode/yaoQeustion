@@ -7,7 +7,7 @@
 }
 
 html.light {
-  --main-text-color:#000;
+  --main-text-color: #000;
   --main-color: #1677ff;
   --menu-item-bg-color: #1677ff;
   --menu-item-font-color: #fff;
@@ -29,7 +29,7 @@ html.light {
 }
 
 html.dark {
-  --main-text-color:#fff;
+  --main-text-color: #fff;
   --main-color: #1677ff;
   --menu-item-bg-color: #1677ff;
   --menu-item-font-color: #fff;
