@@ -7,6 +7,8 @@ export interface QuestionRadioProps {
   options?: Array<item>;
   value?: string;
   isVertical?: boolean;
+  isDisabled?: boolean;
+  titleMaxLength?: number;
 }
 export const QuestionRadioDefaultProps: QuestionRadioProps = {
   title: "单选标题",
@@ -25,5 +27,7 @@ export const QuestionRadioDefaultProps: QuestionRadioProps = {
     }
   ],
   value: "1",
-  isVertical: false
+  isVertical: false,
+  isDisabled: false,
+  titleMaxLength: 20
 };

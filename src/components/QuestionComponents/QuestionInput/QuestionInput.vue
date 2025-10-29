@@ -16,13 +16,14 @@ const props = withDefaults(defineProps<QuestionInputProps>(), {
 
 <style lang="less" scoped>
 .QustionInput {
+  pointer-events: none;
+  color: var(--main-text-color);
   .elinput {
     pointer-events: none;
   }
   .title {
     font-size: 16px;
     font-weight: bold;
-    color: var(--question-title-color);
     margin-bottom: 10px;
   }
 }

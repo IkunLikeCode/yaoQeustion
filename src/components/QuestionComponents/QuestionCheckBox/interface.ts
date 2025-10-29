@@ -7,6 +7,9 @@ export interface QuestionCheckboxProps {
   options?: Array<item>;
   value?: Array<item>;
   isVertical?: boolean;
+  isDisabled?: boolean;
+  titleMaxLength?: number;
+  optionMaxLength?: number;
 }
 export const QuestionCheckboxDefaultProps: QuestionCheckboxProps = {
   title: "多选标题",
@@ -25,5 +28,8 @@ export const QuestionCheckboxDefaultProps: QuestionCheckboxProps = {
     }
   ],
   value: [],
-  isVertical: false
+  isVertical: false,
+  isDisabled: false,
+  titleMaxLength: 20,
+  optionMaxLength: 30
 };

@@ -17,13 +17,26 @@ export interface QuestionState {
   // 当前被选中的组件的id
   selectedId: string;
   copyComponent: ComponentInfoType | null; //当前复制的组件
+  // questionTitle: string;
+  questionInfo: {
+    questionTitle: string;
+    questionDesc: string;
+    backgroundColor: string;
+    fontColor: string;
+  };
 }
 
 export const useQuestionStore = defineStore("question", {
   state: (): QuestionState => ({
     componentsList: [],
     selectedId: "",
-    copyComponent: null
+    copyComponent: null,
+    questionInfo: {
+      questionTitle: "",
+      questionDesc: "",
+      backgroundColor: "#f5f7fa",
+      fontColor: "#000000"
+    }
   }),
   actions: {
     /**
@@ -63,7 +76,7 @@ export const useQuestionStore = defineStore("question", {
         return;
       }
       this.selectedId = getNextComponent(this);
-      component.isHide = true;
+      component.isHide = !component.isHide;
     },
     /**
      * 锁定组件

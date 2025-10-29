@@ -5,6 +5,7 @@ import type { QuestionInfoProps } from "./QuestionInfo";
 import type { QuestionTextareaProps } from "./QuestionTextarea";
 import type { QuestionRadioProps } from "./QuestionRadio";
 import type { QuestionCheckboxProps } from "./QuestionCheckBox";
+import type { QuestionUploadProps } from "./QuestionUpload";
 import type { Component } from "vue";
 import QuestionConfigInput from "./QuestionInput/index";
 import QuestionConfigTitle from "./QuestionTitle/index";
@@ -13,6 +14,7 @@ import QuestionConfigInfo from "./QuestionInfo/index";
 import QuestionConfigTextarea from "./QuestionTextarea/index";
 import QuestionConfigRadio from "./QuestionRadio/index";
 import QuestionConfigCheckBox from "./QuestionCheckBox/index";
+import QuestionConfigUpload from "./QuestionUpload/index";
 
 export type ComponentPropsType =
   | QuestionInputProps
@@ -21,7 +23,8 @@ export type ComponentPropsType =
   | QuestionInfoProps
   | QuestionTextareaProps
   | QuestionRadioProps
-  | QuestionCheckboxProps;
+  | QuestionCheckboxProps
+  | QuestionUploadProps;
 
 // 每个组件的配置信息类型
 export interface ComponentConfType {
@@ -42,7 +45,8 @@ export const componentList: ComponentConfType[] = [
   QuestionConfigInfo,
   QuestionConfigTextarea,
   QuestionConfigRadio,
-  QuestionConfigCheckBox
+  QuestionConfigCheckBox,
+  QuestionConfigUpload
 ];
 // 对组件分组
 export const componentGroup = [
@@ -60,6 +64,11 @@ export const componentGroup = [
     groupKey: "choice",
     title: "用户选择",
     componentList: [QuestionConfigRadio, QuestionConfigCheckBox]
+  },
+  {
+    groupKey: "upload",
+    title: "用户上传",
+    componentList: [QuestionConfigUpload]
   }
 ];
 

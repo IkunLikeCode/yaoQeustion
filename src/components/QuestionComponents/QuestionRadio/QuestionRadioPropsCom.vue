@@ -4,13 +4,22 @@ import { QuestionRadioDefaultProps } from "./interface";
 import useMonitorUserInput from "@/hooks/useMonitorUserInput";
 import { ElForm, ElFormItem, ElSelect, ElOption, ElInput, ElButton } from "element-plus";
 import randomId from "@/utils/radomId";
+import { ref } from "vue";
+
 const emit = defineEmits(["change"]);
 const props = withDefaults(defineProps<QuestionRadioProps>(), {
   title: QuestionRadioDefaultProps.title,
   options: () => JSON.parse(JSON.stringify(QuestionRadioDefaultProps.options)),
   value: QuestionRadioDefaultProps.value,
-  isVertical: QuestionRadioDefaultProps.isVertical
+  isVertical: QuestionRadioDefaultProps.isVertical,
+  isDisabled: QuestionRadioDefaultProps.isDisabled,
+  titleMaxLength: QuestionRadioDefaultProps.titleMaxLength
 });
+
+// 为每个组件实例创建唯一的表单引用
+const formRef = ref();
+const formId = `radio-form-${randomId()}`;
+
 const { formData } = useMonitorUserInput(props, emit);
 // 添加选项
 const addOption = () => {
@@ -31,9 +40,14 @@ const validateOptionsLabel = (index: number) => {
 
 <template>
   <div class="QuestionRadioPropsCom">
-    <el-form :model="formData" label-position="top">
+    <el-form :id="formId" :ref="formRef" :model="formData" label-position="top" :disabled="isDisabled">
       <el-form-item label="标题" prop="title" :rules="[{ required: true, message: '请输入标题', trigger: 'blur' }]">
-        <el-input v-model="formData.title" placeholder="请输入标题"></el-input>
+        <el-input
+          v-model="formData.title"
+          placeholder="请输入标题"
+          :maxlength="titleMaxLength"
+          show-word-limit
+        ></el-input>
       </el-form-item>
       <el-form-item label="选项列表" prop="options">
         <div class="choice-list">

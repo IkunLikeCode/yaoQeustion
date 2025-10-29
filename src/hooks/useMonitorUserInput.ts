@@ -31,7 +31,7 @@ export default function useMonitorUserInput<T extends Record<string, any>>(
         isUpdatingFromProps = false;
       });
     },
-    { immediate: true, deep: true }
+    { deep: true }
   );
 
   // 监听 formData 变化，发射事件

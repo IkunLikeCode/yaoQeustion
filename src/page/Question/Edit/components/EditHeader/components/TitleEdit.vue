@@ -1,14 +1,15 @@
 <script setup lang="ts">
 import { ElInput, ElButton } from "element-plus";
 import { shallowRef } from "vue";
+import { useQuestionStore } from "@/store/module/question";
+const questionStore = useQuestionStore();
 const isEdit = shallowRef(true);
-const title = shallowRef("个人信息调查");
 </script>
 
 <template>
   <div class="TitleEdit">
-    <div v-if="isEdit" class="title">{{ title }}</div>
-    <el-input v-else v-model="title" placeholder="请输入标题" />
+    <div v-if="isEdit" class="title">{{ questionStore.questionInfo.questionTitle }}</div>
+    <el-input v-else v-model="questionStore.questionInfo.questionTitle" placeholder="请输入标题" />
     <el-button link @click="isEdit = !isEdit">
       <i class="iconfont icon-xiezuo editIcon"></i>
     </el-button>

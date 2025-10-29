@@ -22,7 +22,9 @@ const selectedOptions = computed(() => {
       :class="{ 'checkbox-group-column': props.isVertical, 'checkbox-group-row': !props.isVertical }"
     >
       <el-checkbox v-for="item in props.options" :key="item.value" :label="item.value">
-        {{ item.label }}
+        <div class="checkbox-item-content">
+          {{ item.label }}
+        </div>
       </el-checkbox>
     </el-checkbox-group>
   </div>
@@ -31,6 +33,7 @@ const selectedOptions = computed(() => {
 <style lang="less" scoped>
 .QuestionCheckbox {
   pointer-events: none;
+  color: var(--main-text-color);
   .displayCommon() {
     display: flex;
     width: 100%;
@@ -40,7 +43,6 @@ const selectedOptions = computed(() => {
   .title {
     font-size: 16px;
     font-weight: bold;
-    color: var(--question-title-color);
     margin-bottom: 12px;
   }
   .checkbox-group-column {
@@ -50,6 +52,10 @@ const selectedOptions = computed(() => {
   .checkbox-group-row {
     .displayCommon();
     flex-direction: row;
+  }
+  .checkbox-item-content {
+    // 换行
+    word-break: break-word;
   }
 }
 </style>

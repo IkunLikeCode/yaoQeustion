@@ -11,11 +11,11 @@ const clone = <T>(obj: T): T => {
 };
 
 class MyUndoRedo {
-  private undoStack: QuestionState[] = [];
-  private redoStack: QuestionState[] = [];
-  private store = useQuestionStore();
-  private isRecording = true; // 防止撤销/重做时重复记录
-  private maxSnapshots = 100; // 最多保留的快照数量
+  undoStack: QuestionState[] = [];
+  redoStack: QuestionState[] = [];
+  store = useQuestionStore();
+  isRecording = true; // 防止撤销/重做时重复记录
+  maxSnapshots = 20; // 最多保留的快照数量
 
   constructor() {
     // 初始快照（必须克隆）

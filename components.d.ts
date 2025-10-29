@@ -8,6 +8,7 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
+    DragCom: typeof import('./src/components/DragCom/DragCom.vue')['default']
     ElButton: typeof import('element-plus/es')['ElButton']
     ElForm: typeof import('element-plus/es')['ElForm']
     ElFormItem: typeof import('element-plus/es')['ElFormItem']
@@ -28,8 +29,11 @@ declare module 'vue' {
     QuestionTextareaPropsCom: typeof import('./src/components/QuestionComponents/QuestionTextarea/QuestionTextareaPropsCom.vue')['default']
     QuestionTitle: typeof import('./src/components/QuestionComponents/QuestionTitle/QuestionTitle.vue')['default']
     QuestionTitlePropsCom: typeof import('./src/components/QuestionComponents/QuestionTitle/QuestionTitlePropsCom.vue')['default']
+    QuestionUpload: typeof import('./src/components/QuestionComponents/QuestionUpload/QuestionUpload.vue')['default']
+    QuestionUploadPropsCom: typeof import('./src/components/QuestionComponents/QuestionUpload/QuestionUploadPropsCom.vue')['default']
     QuetionsInputPropsCom: typeof import('./src/components/QuestionComponents/QuestionInput/QuetionsInputPropsCom.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    UploadFile: typeof import('./src/components/QuestionComponents/QuestionUpload/UploadFile.vue')['default']
   }
 }

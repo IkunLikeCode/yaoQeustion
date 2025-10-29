@@ -15,11 +15,11 @@ const props = withDefaults(defineProps<QuestionTextareaProps>(), QuestionTextare
 
 <style lang="less" scoped>
 .QuestionTextarea {
+  color: var(--main-text-color);
   pointer-events: none;
   .title {
     font-size: 16px;
     font-weight: bold;
-    color: var(--question-title-color);
     margin-bottom: 10px;
   }
   .content {

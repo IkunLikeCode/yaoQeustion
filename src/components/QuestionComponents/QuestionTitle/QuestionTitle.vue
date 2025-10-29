@@ -26,10 +26,12 @@ const levelClass = computed(() => {
 
 <style lang="less" scoped>
 .questionTitle {
+  color: var(--main-text-color);
   .title {
     font-size: 16px;
     font-weight: bold;
-    color: var(--question-title-color);
+    // 换行
+    word-break: break-word;
   }
   .level-1 {
     font-size: 24px;

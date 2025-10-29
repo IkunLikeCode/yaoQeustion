@@ -4,6 +4,8 @@ import { useQuestionStore } from "@/store/module/question";
 import { computed } from "vue";
 import { storeToRefs } from "pinia";
 import MyUndoRedo from "@/utils/myUndoRedo";
+import useShortCutKey from "@/hooks/useShortcutKey";
+
 const questionStore = useQuestionStore();
 const { selectedId } = storeToRefs(questionStore);
 
@@ -13,6 +15,19 @@ const forbidden = computed(() => {
 const isSelect = computed(() => {
   return !questionStore.componentsList.length;
 });
+
+// 删除快捷键
+useShortCutKey("Delete", questionStore.deleteComponent);
+// 复制快捷键
+useShortCutKey("ctrl+c", questionStore.copyComponentHandle);
+// 粘贴快捷键
+useShortCutKey("ctrl+v", questionStore.niantieComponent);
+// 撤销快捷键
+useShortCutKey("ctrl+z", MyUndoRedo.undo.bind(MyUndoRedo));
+// 重做快捷键
+useShortCutKey("ctrl+y", MyUndoRedo.redo.bind(MyUndoRedo));
+useShortCutKey("ArrowUp", questionStore.upComponent);
+useShortCutKey("ArrowDown", questionStore.downComponent);
 </script>
 
 <template>

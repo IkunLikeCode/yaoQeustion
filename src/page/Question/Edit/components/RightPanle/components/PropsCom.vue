@@ -21,6 +21,7 @@ questionStore.$subscribe((_mutation, state) => {
   propsCom.value = conf?.PropsCom ? markRaw(conf.PropsCom) : null;
   // 传入当前选中组件的 props（不是 defaultProps）
   propsData.value = current.props;
+  propsData.value.isDisabled = current.isLock;
 });
 
 function onChangeHandle(value: any) {
@@ -37,3 +38,9 @@ function onChangeHandle(value: any) {
     <component :is="propsCom" v-if="propsCom" v-bind="propsData" @change="onChangeHandle" />
   </div>
 </template>
+
+<style lang="less" scoped>
+.PropsCom {
+  height: 100%;
+}
+</style>

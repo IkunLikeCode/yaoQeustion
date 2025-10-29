@@ -9,8 +9,8 @@ const activeTab = ref("componentLib");
 
 <template>
   <div class="LeftPanel">
-    <el-tabs v-model="activeTab">
-      <el-tab-pane label="组件库" name="componentLib">
+    <el-tabs v-model="activeTab" class="left-tabs">
+      <el-tab-pane label="组件库" name="componentLib" class="tab-pane">
         <template #label>
           <div class="tab-label">
             <i class="iconfont icon-kucun"></i>
@@ -19,7 +19,7 @@ const activeTab = ref("componentLib");
         </template>
         <ComponentLib />
       </el-tab-pane>
-      <el-tab-pane label="图层" name="photoCom">
+      <el-tab-pane label="图层" name="photoCom" class="tab-pane">
         <template #label>
           <div class="tab-label">
             <i class="iconfont icon-gistuceng"></i>
@@ -33,14 +33,24 @@ const activeTab = ref("componentLib");
 </template>
 
 <style lang="less" scoped>
+:deep(.el-tabs__header) {
+  background-color: #fff;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
 .LeftPanel {
   width: 20%;
   height: 100%;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
   background-color: var(--left-panel-bg-color);
-  padding: 0 10px;
   box-sizing: border-box;
   overflow-y: auto;
+  .left-tabs {
+    width: 100%;
+    padding: 0 10px;
+    box-sizing: border-box;
+  }
   &::-webkit-scrollbar {
     width: 6px;
   }

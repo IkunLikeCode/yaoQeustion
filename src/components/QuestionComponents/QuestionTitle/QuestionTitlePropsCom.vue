@@ -1,16 +1,14 @@
 <script setup lang="ts">
 import { ElForm, ElFormItem, ElInput, ElSelect, ElOption, ElCheckbox, type FormInstance } from "element-plus";
 import { QuestionTitleDefaultProps, type QuestionTitleProps } from "./interface";
-import { useTemplateRef } from "vue";
+import { ref } from "vue";
 import useMonitorUserInput from "@/hooks/useMonitorUserInput";
-
+import randomId from "@/utils/radomId";
 const emit = defineEmits(["change"]);
-const formRef = useTemplateRef<FormInstance>("formRef");
-const props = withDefaults(defineProps<QuestionTitleProps>(), {
-  isCenter: QuestionTitleDefaultProps.isCenter,
-  title: QuestionTitleDefaultProps.title,
-  level: QuestionTitleDefaultProps.level as QuestionTitleProps["level"]
-});
+const formRef = ref<FormInstance | null>(null);
+const formId = `title-form-${randomId()}`;
+
+const props = withDefaults(defineProps<QuestionTitleProps>(), QuestionTitleDefaultProps);
 
 // 使用 hook 来处理表单数据和事件
 const { formData } = useMonitorUserInput(props, emit);
@@ -18,9 +16,9 @@ const { formData } = useMonitorUserInput(props, emit);
 
 <template>
   <div class="QuestionPropsCom">
-    <el-form ref="formRef" :model="formData" label-position="top">
+    <el-form :id="formId" ref="formRef" :model="formData" label-position="top" :disabled="props.isDisabled">
       <el-form-item :rules="[{ required: true, message: '请输入标题', trigger: 'blur' }]" label="标题" prop="title">
-        <el-input v-model="formData.title" placeholder="请输入标题" />
+        <el-input v-model="formData.title" placeholder="请输入标题" :maxlength="props.titleMaxLength" show-word-limit />
       </el-form-item>
       <el-form-item label="标题等级" prop="level">
         <el-select v-model="formData.level" placeholder="请选择标题等级">

@@ -9,7 +9,6 @@ import path from "path";
 function RouterPathPlugin() {
   return {
     name: "router-path-plugin",
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     async configureServer(server: any) {
       // 开发服务器启动时执行一次
       await import(new URL("./scripts/routerPath.js", import.meta.url).href);

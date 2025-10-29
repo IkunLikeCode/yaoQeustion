@@ -9,8 +9,6 @@ import deepClone from "@/utils/deepClone";
  * @param component 组件配置
  */
 function addComponent(component: ComponentConfType) {
-  console.log(component.defaultProps);
-
   useQuestionStore().addComponent({
     fe_id: randomId(),
     title: component.title || "",

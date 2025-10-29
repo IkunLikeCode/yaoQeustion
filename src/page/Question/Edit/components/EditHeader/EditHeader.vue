@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import TitleEdit from "./components/TitleEdit.vue";
 import ToolBar from "./components/ToolBar.vue";
+import SaveAndPostBtn from "./components/saveAndPostBtn.vue";
 </script>
 
 <template>
@@ -12,7 +13,9 @@ import ToolBar from "./components/ToolBar.vue";
     <div class="center">
       <ToolBar />
     </div>
-    <div class="right"></div>
+    <div class="right">
+      <SaveAndPostBtn />
+    </div>
   </div>
 </template>
 
@@ -44,6 +47,8 @@ import ToolBar from "./components/ToolBar.vue";
   }
   .right {
     width: 25%;
+    display: flex;
+    justify-content: flex-end;
   }
 }
 </style>

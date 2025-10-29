@@ -30,10 +30,10 @@ const selectedValue = computed(() => props.value);
 <style lang="less" scoped>
 .QuestionRadio {
   pointer-events: none;
+  color: var(--main-text-color);
   .title {
     font-size: 16px;
     font-weight: bold;
-    color: var(--question-title-color);
     margin-bottom: 12px;
   }
   .radio-group-column {

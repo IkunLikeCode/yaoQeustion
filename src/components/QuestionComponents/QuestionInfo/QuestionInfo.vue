@@ -27,6 +27,7 @@ const levelClass = computed(() => {
   gap: 10px;
   pointer-events: none;
   height: auto;
+  color: var(--main-text-color);
   .title {
     font-size: 40px;
     font-weight: bold;
