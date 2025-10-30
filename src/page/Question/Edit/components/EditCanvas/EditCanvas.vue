@@ -2,6 +2,7 @@
 import { getComponentByType } from "@/components/QuestionComponents";
 import { useQuestionStore } from "@/store/module/question";
 import type { ComponentInfoType } from "@/store/module/question";
+import { onUnmounted } from "vue";
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { computed, ref, TransitionGroup } from "vue";
 const qeustionStore = useQuestionStore();
@@ -70,6 +71,20 @@ function handleDrop(index: number) {
   // 更新组件列表
   qeustionStore.componentsList = curComponentList;
 }
+
+onUnmounted(() => {
+  qeustionStore.$patch({
+    componentsList: [],
+    questionInfo: {
+      questionTitle: "",
+      questionDesc: "",
+      fontColor: "#000000",
+      backgroundColor: "#ffffff"
+    },
+    selectedId: "",
+    copyComponent: {}
+  });
+});
 </script>
 
 <template>
@@ -165,11 +180,11 @@ function handleDrop(index: number) {
 .com-transition-enter-active,
 .com-transition-leave-active {
   // 离开动画保持元素位置
-  transition: all 0.5s cubic-bezier(0.55, 0, 0.1, 1);
+  transition: all 0.3s cubic-bezier(0.22, 0, 0.1, 1);
 }
 .com-transition-enter-from,
 .com-transition-leave-to {
   opacity: 0;
-  transform: scaleY(0.01) translate(30px, 0);
+  transform: scaleY(0.01);
 }
 </style>

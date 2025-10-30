@@ -27,8 +27,10 @@ class Request {
     this.instance.interceptors.response.use(
       response => {
         if (response.data && response.data.errno === 0) {
-          if (response.data.data.success || response.data.success) {
-            if (response.data.data.msg) ElMessage.success(response.data.data.msg || "请求成功");
+          if (response.data.success || response.data.data.success) {
+            if (!response.data.data) {
+              return response.data;
+            }
             return response.data.data;
           } else {
             ElMessage.error(response.data.data.msg || "请求失败");

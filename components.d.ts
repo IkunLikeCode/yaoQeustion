@@ -15,6 +15,8 @@ declare module 'vue' {
     ElSwitch: typeof import('element-plus/es')['ElSwitch']
     LogCom: typeof import('./src/components/log/logCom.vue')['default']
     OptionsCom: typeof import('./src/components/options/optionsCom.vue')['default']
+    PageTitle: typeof import('./src/components/PageTitle/PageTitle.vue')['default']
+    QuestionCardItem: typeof import('./src/components/QuestionCardItem/QuestionCardItem.vue')['default']
     QuestionCheckbox: typeof import('./src/components/QuestionComponents/QuestionCheckBox/QuestionCheckbox.vue')['default']
     QuestionCheckboxPropsCom: typeof import('./src/components/QuestionComponents/QuestionCheckBox/QuestionCheckboxPropsCom.vue')['default']
     QuestionInfo: typeof import('./src/components/QuestionComponents/QuestionInfo/QuestionInfo.vue')['default']

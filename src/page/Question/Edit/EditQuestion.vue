@@ -3,6 +3,19 @@ import LeftPanel from "./components/LeftPanel/LeftPanel.vue";
 import RightPanle from "./components/RightPanle/RightPanle.vue";
 import EditHeader from "./components/EditHeader/EditHeader.vue";
 import EditCanvas from "./components/EditCanvas/EditCanvas.vue";
+import { useRoute } from "vue-router";
+import { onMounted } from "vue";
+import { useQuestionStore } from "@/store/module/question";
+
+const questionStore = useQuestionStore();
+
+const route = useRoute();
+
+onMounted(() => {
+  if (route.query.id) {
+    questionStore.getQuestionDetailAction(route.query.id as string);
+  }
+});
 </script>
 
 <template>

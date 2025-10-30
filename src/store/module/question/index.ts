@@ -2,6 +2,9 @@ import { defineStore } from "pinia";
 import type { ComponentPropsType } from "@/components/QuestionComponents";
 import { addComponentUtil, deepClone, getNextComponent } from "./util";
 import randomId from "@/utils/radomId";
+import { getQuestionDetail } from "@/api/question";
+import type { QuestionDetail } from "@/store/module/question/type";
+import { ElMessage } from "element-plus";
 // 组件的信息类型
 export interface ComponentInfoType {
   fe_id: string;
@@ -159,6 +162,28 @@ export const useQuestionStore = defineStore("question", {
       if (!component) return;
       // 更新组件属性
       component.props = { ...component.props, ...newProps };
+    },
+    /**
+     * 获取问卷详情
+     * @param questionId 问卷 ID
+     */
+    async getQuestionDetailAction(questionId: string) {
+      try {
+        const result = await getQuestionDetail<QuestionDetail>(questionId);
+        this.$patch({
+          componentsList: result.componentsList,
+          questionInfo: {
+            questionTitle: result.title,
+            questionDesc: result.desc,
+            backgroundColor: result.bgMainColor,
+            fontColor: result.textMainColor
+          },
+          copyComponent: null,
+          selectedId: result.componentsList[0]?.fe_id || ""
+        });
+      } catch (error: any) {
+        ElMessage.error(error.message || "获取问卷详情失败");
+      }
     }
   }
 });
