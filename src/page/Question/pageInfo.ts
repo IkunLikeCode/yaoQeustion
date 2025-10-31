@@ -15,7 +15,7 @@ export default {
       component: () => import("./Edit/EditQuestion.vue")
     },
     {
-      path: "/question/statistics",
+      path: "/question/statistic",
       name: "StatisticsQuestion",
       component: () => import("./Statistics/StatisticsQuestion.vue")
     }

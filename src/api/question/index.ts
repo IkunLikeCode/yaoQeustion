@@ -22,11 +22,15 @@ export function saveQuestion<T>(questionInfo: Record<string, any>) {
 export function getQuestionListByUserId<T>({
   userId,
   page,
-  pageSize
+  pageSize,
+  state = "all",
+  searchText = ""
 }: {
-  userId: string;
+  userId?: string;
   page: number;
   pageSize: number;
+  state?: "all" | "isStar" | "isDelete";
+  searchText: string;
 }) {
   return request.request<T>({
     url: "/api/question",
@@ -34,7 +38,9 @@ export function getQuestionListByUserId<T>({
     params: {
       userId,
       page,
-      pageSize
+      pageSize,
+      state,
+      searchText
     }
   });
 }
@@ -53,13 +59,16 @@ export function updateQuestion<T>(questionInfo: Record<string, any>, questionId:
 }
 
 /**
- * 删除问卷
+ * 彻底删除一个问卷
  * @param questionId 问卷 ID
  */
-export function deleteQuestion<T>(questionId: string) {
+export function deleteQuestion<T>(questionIds: string[]) {
   return request.request<T>({
-    url: `/api/question/${questionId}`,
-    method: "delete"
+    url: `/api/question/batch`,
+    method: "delete",
+    data: {
+      questionIds
+    }
   });
 }
 

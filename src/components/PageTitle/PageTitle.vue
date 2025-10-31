@@ -9,7 +9,7 @@ defineProps<{
   <div class="PageTitle">
     <div class="title" :style="{ fontSize: fontSize || '16px' }">{{ title }}</div>
     <div class="other">
-      <slot></slot>
+      <slot> </slot>
     </div>
   </div>
 </template>

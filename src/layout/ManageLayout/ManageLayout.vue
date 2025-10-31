@@ -1,18 +1,5 @@
 <script setup lang="ts">
-import { onMounted, reactive } from "vue";
 import MenuList from "./components/MenuList.vue";
-import { useQuestionList } from "@/store/module/questionList";
-import { useUserStore } from "@/store/module/user/userStore";
-const userStore = useUserStore();
-const useQuestionListStore = useQuestionList();
-const pageInfo = reactive({
-  userId: userStore.userInfo.id,
-  page: 1,
-  pageSize: 10
-});
-onMounted(() => {
-  useQuestionListStore.getQuestionListByUserIdAction(pageInfo);
-});
 </script>
 
 <template>

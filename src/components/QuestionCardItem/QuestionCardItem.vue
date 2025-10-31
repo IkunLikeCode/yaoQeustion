@@ -5,7 +5,7 @@ import { updateQuestion } from "@/api/question";
 import { useRequest } from "@/hooks/useRequest";
 import { useRouter } from "vue-router";
 import { computed, ref } from "vue";
-import { formatDate } from "@/utils/fromatDate";
+import { formatDate } from "@/utils/formatDate";
 import { EDIT_OR_COPY, COPY_OR_EDIT } from "@/utils/const";
 const router = useRouter();
 const emit = defineEmits(["updateQuestion"]);
@@ -78,6 +78,17 @@ const copyQuestion = () => {
     }
   });
 };
+
+//问卷统计页（统计该问卷的填写情况）
+const statQuestion = () => {
+  router.push({
+    path: "/question/statistic",
+    query: {
+      id: props.questionItem.id
+    }
+  });
+};
+
 const isCurrent = computed(() => {
   return currentQuestionId.value === props.questionItem.id;
 });
@@ -115,7 +126,7 @@ const isCurrent = computed(() => {
               <span>编辑问卷</span>
             </div>
           </el-button>
-          <el-button link :disabled="!questionItem.isPublished">
+          <el-button link :disabled="!questionItem.isPublished" @click="statQuestion">
             <div class="btn">
               <i class="iconfont icon-tongji"></i>
               <span>统计问卷</span>
