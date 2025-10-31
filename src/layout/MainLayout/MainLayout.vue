@@ -1,16 +1,17 @@
 <script setup lang="ts">
-import { ElHeader } from "element-plus";
 import LogCom from "../../components/log/logCom.vue";
 import OptionsCom from "../../components/options/optionsCom.vue";
 </script>
 
 <template>
   <div class="app">
-    <el-header class="header">
+    <div class="header">
       <LogCom />
       <OptionsCom />
-    </el-header>
-    <router-view></router-view>
+    </div>
+    <div class="main">
+      <router-view></router-view>
+    </div>
   </div>
 </template>
 

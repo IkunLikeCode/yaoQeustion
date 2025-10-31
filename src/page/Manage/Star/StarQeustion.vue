@@ -36,14 +36,16 @@ const { changePage, pageInfo, updateQuestion } = useGetQuestionList({ state: "is
     </div>
     <div class="pagination">
       <template v-if="starQuestionList.length > 0">
-        <el-pagination
-          v-model:current-page="pageInfo.page"
-          v-model:page-size="pageInfo.pageSize"
-          background
-          layout="prev, pager, next, jumper"
-          :total="starQuestionList.length"
-          @change="changePage"
-        />
+        <div class="pagination">
+          <el-pagination
+            v-model:current-page="pageInfo.page"
+            v-model:page-size="pageInfo.pageSize"
+            background
+            layout="prev, pager, next, jumper"
+            :total="starQuestionList.length"
+            @change="changePage"
+          />
+        </div>
       </template>
     </div>
   </div>
@@ -67,6 +69,6 @@ const { changePage, pageInfo, updateQuestion } = useGetQuestionList({ state: "is
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 20px;
+  margin-bottom: 20px;
 }
 </style>

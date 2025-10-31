@@ -26,7 +26,6 @@ const { changePage, pageInfo, updateQuestion } = useGetQuestionList({
     <PageTitle title="我的问卷" font-size="30px">
       <QuestionSearch state="all" :page-info="pageInfo"></QuestionSearch>
     </PageTitle>
-
     <div class="question-list">
       <template v-if="questionList.length > 0">
         <QuestionCardItem
@@ -71,7 +70,7 @@ const { changePage, pageInfo, updateQuestion } = useGetQuestionList({
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 20px 0;
+    margin-bottom: 20px;
   }
 }
 </style>

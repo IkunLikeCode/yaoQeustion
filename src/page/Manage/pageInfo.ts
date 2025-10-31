@@ -36,6 +36,15 @@ export default {
         icon: "recycleBin"
       },
       component: () => import("@/page/Manage/RecycleBin/RecycleBin.vue")
+    },
+    {
+      path: "/manage/personCenter",
+      name: "PersonCenter",
+      meta: {
+        title: "个人中心",
+        icon: "personCenter"
+      },
+      component: () => import("@/page/Manage/Person/PersonCenter.vue")
     }
   ]
 };

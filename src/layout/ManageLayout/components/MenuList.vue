@@ -10,6 +10,11 @@ const menuList: ManageLayoutProps["menuList"] = [
     icon: "icon-jia"
   },
   {
+    title: "个人中心",
+    path: "/manage/personCenter",
+    icon: "icon-gerenzhongxin"
+  },
+  {
     title: "我的问卷",
     path: "/manage/listQuestion",
     icon: "icon-wode"

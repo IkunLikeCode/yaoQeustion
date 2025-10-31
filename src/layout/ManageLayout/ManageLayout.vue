@@ -16,10 +16,15 @@ import MenuList from "./components/MenuList.vue";
   width: 1400px;
   margin: 0 auto;
   display: flex;
+  height: calc(100vh - 60px);
   .content {
     flex: 1;
-    padding: 12px 0 12px 50px;
+    padding: 12px 20px 12px 50px;
     box-sizing: border-box;
+    overflow-y: auto;
+    height: calc(100vh - 60px);
+    @import "@/style/scrollbar.less";
+    .custom-scrollbar();
   }
 }
 </style>
