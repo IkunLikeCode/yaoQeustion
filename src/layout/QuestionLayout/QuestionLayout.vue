@@ -6,4 +6,8 @@
   </div>
 </template>
 
-<style lang="less" scoped></style>
+<style lang="less" scoped>
+.QuestionLayout {
+  height: 100%;
+}
+</style>

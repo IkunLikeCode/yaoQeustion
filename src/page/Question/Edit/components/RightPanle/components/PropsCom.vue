@@ -2,7 +2,6 @@
 import { useQuestionStore } from "@/store/module/question";
 import { getComponentByType } from "@/components/QuestionComponents";
 import { shallowRef, markRaw } from "vue";
-
 const questionStore = useQuestionStore();
 
 // 当前属性面板组件和需要传入的属性
@@ -17,7 +16,7 @@ questionStore.$subscribe((_mutation, state) => {
     return;
   }
   const conf = getComponentByType(current.type);
-  // 组件本身确保是非响应式
+  // 使用已注册的组件实例，避免运行时动态导入别名无法解析
   propsCom.value = conf?.PropsCom ? markRaw(conf.PropsCom) : null;
   // 传入当前选中组件的 props（不是 defaultProps）
   propsData.value = current.props;

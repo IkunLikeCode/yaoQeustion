@@ -26,6 +26,9 @@ html.light {
   --componentsLib-item-bg-color: #f8f8f8;
   --componentsLib-item-hover-color: #ebebeb;
   /* 组件库列表 结束*/
+  /* 统计分析组件的背景颜色 */
+  --statistics-bg-color: #fff;
+  --statistics-shadow-color: rgba(0, 0, 0, 0.3);
 }
 
 html.dark {
@@ -49,4 +52,7 @@ html.dark {
   --componentsLib-item-bg-color: #333;
   --componentsLib-item-hover-color: #f7f7f7;
   /* 组件库列表 结束*/
+  /* 统计分析组件的背景颜色 */
+  --statistics-bg-color: #222;
+  --statistics-shadow-color: rgba(255, 255, 255, 0.3);
 }
