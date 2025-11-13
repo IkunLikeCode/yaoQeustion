@@ -1,5 +1,15 @@
 # Vue 3 + TypeScript + Vite
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+## 问卷管理平台
 
-Learn more about the recommended Project Setup and IDE Support in the [Vue Docs TypeScript Guide](https://vuejs.org/guide/typescript/overview.html#project-setup).
+提供 发布问卷，问卷编辑器，问卷填写统计等功能
+
+
+<img width="1824" height="834" alt="image" src="https://github.com/user-attachments/assets/b7ef49c8-8c61-4ffa-835f-2fe683124328" />
+
+
+<img width="1824" height="834" alt="image" src="https://github.com/user-attachments/assets/928a0472-6f49-42bc-bf39-6bf47cddcd7f" />
+
+
+
+<img width="1824" height="834" alt="image" src="https://github.com/user-attachments/assets/64e9bfde-3732-49b4-a0dc-61cf3c305b48" />
