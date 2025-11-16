@@ -1,7 +1,13 @@
 import QuestionUpload from "./QuestionUpload.vue";
-import QuestionUploadPropsCom from "./QuestionUploadPropsCom.vue";
 import { QuestionUploadDefaultProps } from "./interface";
-import { markRaw } from "vue";
+import { markRaw, defineAsyncComponent } from "vue";
+const AsyncPropsCom = markRaw(
+  defineAsyncComponent({
+    loader: () => import("./QuestionUploadPropsCom.vue"),
+    delay: 100,
+    timeout: 3000
+  })
+);
 
 export * from "./interface";
 export default {
@@ -9,5 +15,5 @@ export default {
   title: "用户上传",
   defaultProps: QuestionUploadDefaultProps,
   Component: markRaw(QuestionUpload),
-  PropsCom: markRaw(QuestionUploadPropsCom)
+  PropsCom: AsyncPropsCom
 };
