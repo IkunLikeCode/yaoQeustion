@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { onMounted, ref } from "vue";
-import { VueUiQuickChart } from "vue-data-ui";
+// import { onMounted, ref } from "vue";
+// import { VueUiQuickChart } from "vue-data-ui";
 import "vue-data-ui/style.css";
-const props = defineProps<{
-  statistics: any;
-}>();
+// const props = defineProps<{
+//   statistics: any;
+// }>();
 </script>
 
 <template>
