@@ -1,3 +1,4 @@
+import randomId from "@/utils/radomId";
 type item = {
   value: string;
   label: string;
@@ -14,15 +15,15 @@ export const QuestionRadioDefaultProps: QuestionRadioProps = {
   title: "单选标题",
   options: [
     {
-      value: "1",
+      value: randomId(),
       label: "选项1"
     },
     {
-      value: "2",
+      value: randomId(),
       label: "选项2"
     },
     {
-      value: "3",
+      value: randomId(),
       label: "选项3"
     }
   ],

@@ -16,6 +16,7 @@ async function saveQuestionHandle() {
   publishQuestion("save");
 }
 async function publishQuestion(saveOrPublish: string = "publish") {
+  console.log(1);
   const questionInfo = reactive<any>({
     title: questionStore.questionInfo?.questionTitle || "",
     desc: questionStore.questionInfo?.questionDesc || "",
@@ -39,7 +40,7 @@ async function publishQuestion(saveOrPublish: string = "publish") {
     return;
   }
   try {
-    if (editOrCopy === "edit") {
+    if (editOrCopy === "edit" || saveOrPublish === "save") {
       delete questionInfo.userId;
       const result = await updateQuestion<any>(questionInfo, id as string);
       if (result.affected === 1) {
@@ -50,7 +51,7 @@ async function publishQuestion(saveOrPublish: string = "publish") {
       }
       return;
     }
-    if (editOrCopy === "copy") {
+    if (editOrCopy === "copy" || saveOrPublish === "publish") {
       const result = await saveQuestion<any>(questionInfo);
       if (result.user) {
         ElMessage.success(saveOrPublish === "publish" ? PUBLISH_MSG : SAVE_MSG);

@@ -20,6 +20,9 @@ importers:
       vue:
         specifier: ^3.5.22
         version: 3.5.22(typescript@5.9.3)
+      vue-data-ui:
+        specifier: ^3.7.7
+        version: 3.7.7(vue@3.5.22(typescript@5.9.3))
       vue-router:
         specifier: ^4.6.2
         version: 4.6.2(vue@3.5.22(typescript@5.9.3))
@@ -2127,6 +2130,15 @@ packages:
   vscode-uri@3.1.0:
     resolution: {integrity: sha512-/BpdSx+yCQGnCvecbyXdxHDkuk55/G3xwnC0GqY4gmQ3j+A+g8kzzgB4Nk/SINjqn6+waqw3EgbVF2QKExkRxQ==}
 
+  vue-data-ui@3.7.7:
+    resolution: {integrity: sha512-epYI0SqW6OLs62nxlK9D018gcZg/dl+RkSSWw+tHeGSRUoFeT0gfMNvXjS89JQif4x6lpf/qDx/ybHLTSfb6TQ==}
+    peerDependencies:
+      jspdf: ^3.0.1
+      vue: '>=3.3.0'
+    peerDependenciesMeta:
+      jspdf:
+        optional: true
+
   vue-demi@0.14.10:
     resolution: {integrity: sha512-nMZBOwuzabUO0nLgIcc6rycZEebF6eeUfaiQx9+WSk8e29IbLvPU9feI6tqW4kTo3hvoYAJkMh8n8D0fuISphg==}
     engines: {node: '>=12'}
@@ -4207,6 +4219,10 @@ snapshots:
       less: 4.4.2
 
   vscode-uri@3.1.0: {}
+
+  vue-data-ui@3.7.7(vue@3.5.22(typescript@5.9.3)):
+    dependencies:
+      vue: 3.5.22(typescript@5.9.3)
 
   vue-demi@0.14.10(vue@3.5.22(typescript@5.9.3)):
     dependencies:

@@ -19,7 +19,7 @@ const isLogin = computed(() => userStore.isLogin);
 
 <style lang="less" scoped>
 .HomePage {
-  height: 100vh;
+  height: calc(100vh - 60px);
   width: 100%;
   background: linear-gradient(to right, #30cfd0, #9a7dbe);
   display: flex;

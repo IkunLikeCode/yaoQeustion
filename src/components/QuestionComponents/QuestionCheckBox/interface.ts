@@ -1,3 +1,5 @@
+import randomId from "@/utils/radomId";
+
 type item = {
   value: string;
   label: string;
@@ -15,15 +17,15 @@ export const QuestionCheckboxDefaultProps: QuestionCheckboxProps = {
   title: "多选标题",
   options: [
     {
-      value: "1",
+      value: randomId(),
       label: "选项1"
     },
     {
-      value: "2",
+      value: randomId(),
       label: "选项2"
     },
     {
-      value: "3",
+      value: randomId(),
       label: "选项3"
     }
   ],

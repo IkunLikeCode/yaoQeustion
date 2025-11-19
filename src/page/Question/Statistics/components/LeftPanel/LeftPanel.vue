@@ -1,13 +1,17 @@
 <script setup lang="ts">
 import { getComponentByType } from "@/components/QuestionComponents";
 import { useQuestionStore } from "@/store/module/question";
+import type { ComponentInfoType } from "@/store/module/question/index";
 const questionStore = useQuestionStore();
+const clickHandle = (component: ComponentInfoType) => {
+  console.log(component);
+};
 </script>
 
 <template>
   <div class="LeftPanel">
     <template v-for="componentItem in questionStore.componentsList" :key="componentItem.id">
-      <div class="qustionStyle">
+      <div class="qustionStyle" @click="clickHandle(componentItem)">
         <component :is="getComponentByType(componentItem.type)?.Component" v-bind="componentItem.props" />
       </div>
     </template>
@@ -16,9 +20,10 @@ const questionStore = useQuestionStore();
 
 <style lang="less" scoped>
 .LeftPanel {
-  height: 100%;
-  padding: 20px;
+  padding: 10px;
   box-sizing: border-box;
+  height: 100vh;
+
   .qustionStyle {
     width: 100%;
     padding: 10px;
