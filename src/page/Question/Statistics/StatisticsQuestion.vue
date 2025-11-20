@@ -1,16 +1,17 @@
 <script setup lang="ts">
-import { provide, onMounted, reactive } from "vue";
+import { provide, onMounted, reactive, ref } from "vue";
 import useGetQuestionDetail from "@/hooks/useGetQuestionDetail";
 import LeftPanel from "./components/LeftPanel/LeftPanel.vue";
 import LinkPanel from "./components/LinkPanel/LinkPanel.vue";
 import TablePanel from "./components/TablePanel/TablePanel.vue";
-import RightPanel from "./components/RightPanel/RightPanel.vue";
 import { useRoute } from "vue-router";
 import { getStatisticsById } from "@/api/statistics/index";
+import type { ComponentInfoType } from "@/store/module/question";
 interface IStatisticsData {
   count: number;
   statistics: any;
 }
+const { componentsList } = useGetQuestionDetail();
 const {
   query: { id }
 } = useRoute();
@@ -18,20 +19,29 @@ const statisticsData = reactive<IStatisticsData>({
   count: 0,
   statistics: {}
 });
+const curComponentInfoType = ref<ComponentInfoType | null>(null);
+
+/**
+ * 根据问卷id获取统计信息
+ * @param id 问卷id11
+ */
 async function getStatisticsByIdApi(id: string) {
   try {
     const result = await getStatisticsById<IStatisticsData>(id);
     statisticsData.count = result.count;
     statisticsData.statistics = result.statistics;
-    console.log(result);
   } catch (error) {
     console.log(error);
   }
 }
+
+function clickHandle(componentInfoType: ComponentInfoType) {
+  curComponentInfoType.value = componentInfoType;
+}
+
 onMounted(() => {
   getStatisticsByIdApi(id as string);
 });
-const { componentsList } = useGetQuestionDetail();
 
 provide("componentsList", componentsList);
 </script>
@@ -39,17 +49,17 @@ provide("componentsList", componentsList);
 <template>
   <div class="StatisticsQuestion">
     <div class="top">
-      <link-panel></link-panel>
+      <link-panel :count="statisticsData.count"></link-panel>
     </div>
     <div class="main">
       <div class="LeftPanel">
-        <left-panel></left-panel>
+        <left-panel @click-handle="clickHandle"></left-panel>
       </div>
       <div class="TablePanel">
-        <TablePanel></TablePanel>
-      </div>
-      <div class="RightPanel">
-        <RightPanel :statistics="statisticsData.statistics"></RightPanel>
+        <TablePanel
+          :cur-component-info-type="curComponentInfoType"
+          :statistics-data="statisticsData.statistics"
+        ></TablePanel>
       </div>
     </div>
   </div>
@@ -78,7 +88,7 @@ provide("componentsList", componentsList);
     display: grid;
     width: 100%;
     gap: 10px;
-    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-columns: 1fr 3fr;
     grid-template-rows: 1fr;
     box-sizing: border-box;
     height: calc(100vh - 120px);
@@ -96,13 +106,7 @@ provide("componentsList", componentsList);
       height: 100%;
       background-color: var(--statistics-bg-color);
       box-shadow: 0 0 10px var(--statistics-shadow-color);
-    }
-    .RightPanel {
-      width: 100%;
-      padding: 10px;
-      box-sizing: border-box;
-      background-color: var(--statistics-bg-color);
-      box-shadow: 0 0 10px var(--statistics-shadow-color);
+      overflow-y: auto;
     }
   }
 }

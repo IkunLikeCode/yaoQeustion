@@ -3,8 +3,9 @@ import { getComponentByType } from "@/components/QuestionComponents";
 import { useQuestionStore } from "@/store/module/question";
 import type { ComponentInfoType } from "@/store/module/question/index";
 const questionStore = useQuestionStore();
-const clickHandle = (component: ComponentInfoType) => {
-  console.log(component);
+const emit = defineEmits(["clickHandle"]);
+const clickHandle = (componentInfo: ComponentInfoType) => {
+  emit("clickHandle", componentInfo);
 };
 </script>
 
