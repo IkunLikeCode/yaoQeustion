@@ -43,6 +43,7 @@ export default defineConfig({
         target: "http://localhost:9000",
         changeOrigin: true
       }
-    }
+    },
+    host: "0.0.0.0"
   }
 });

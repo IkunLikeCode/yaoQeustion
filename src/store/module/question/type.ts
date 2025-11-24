@@ -10,3 +10,5 @@ export interface QuestionDetail extends QuestionItem {
   updatedAt: string;
   textMainColor: string;
 }
+
+export const Options = ["questionRadio", "questionCheckBox"];

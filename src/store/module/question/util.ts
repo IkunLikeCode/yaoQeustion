@@ -59,7 +59,6 @@ export function deepClone(component: ComponentInfoType): ComponentInfoType {
     }
 
     if (obj instanceof Array) {
-      console.log(1);
       return obj.map(item => cloneProps(item));
     }
 

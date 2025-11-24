@@ -5,6 +5,7 @@ import randomId from "@/utils/radomId";
 import { getQuestionDetail } from "@/api/question";
 import type { QuestionDetail } from "@/store/module/question/type";
 import { ElMessage } from "element-plus";
+import { Options } from "./type";
 // 组件的信息类型
 export interface ComponentInfoType {
   fe_id: string;
@@ -103,7 +104,7 @@ export const useQuestionStore = defineStore("question", {
     copyComponentHandle() {
       const component = this.componentsList.find(item => item.fe_id === this.selectedId);
       if (!component) return;
-      this.copyComponent = { ...deepClone(component) };
+      this.copyComponent = deepClone(component);
     },
     /**
      * 粘贴组件
@@ -113,7 +114,17 @@ export const useQuestionStore = defineStore("question", {
       if (!this.copyComponent) return;
       if (this.copyComponent) {
         // 深拷贝组件
-        this.copyComponent = { ...deepClone(this.copyComponent) };
+        const initData = deepClone(this.copyComponent);
+        if (Options.includes(initData.type)) {
+          const { options } = initData.props as any;
+          (initData.props as any).options = options.map(item => {
+            return {
+              ...item,
+              value: randomId()
+            };
+          });
+        }
+        this.copyComponent = initData;
         this.copyComponent.fe_id = randomId();
         addComponentUtil(this, this.copyComponent);
       }
