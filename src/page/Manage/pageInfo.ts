@@ -42,7 +42,7 @@ export default {
       name: "PersonCenter",
       meta: {
         title: "个人中心",
-        icon: "personCenter"
+        icon: "icon-gerenzhongxin"
       },
       component: () => import("@/page/Manage/Person/PersonCenter.vue")
     }

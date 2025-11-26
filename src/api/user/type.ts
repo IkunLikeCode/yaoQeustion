@@ -3,6 +3,8 @@ export interface RegisterInfoType {
   username?: string;
   password: string;
   confirmPassword?: string;
+  avatar?: string;
+  nickname?: string;
 }
 
 export interface LoginInfoType {

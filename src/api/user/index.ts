@@ -25,3 +25,12 @@ export const getUserInfo = <T>() => {
     method: "GET"
   });
 };
+
+// 更新用户信息
+export const updateUserInfo = <T>(data: Partial<RegisterInfoType>) => {
+  return request.request<T>({
+    url: "/api/user",
+    method: "PUT",
+    data
+  });
+};

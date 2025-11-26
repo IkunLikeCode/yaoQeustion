@@ -22,9 +22,9 @@ import OptionsCom from "../../components/options/optionsCom.vue";
   justify-content: space-between;
 }
 .header {
+  padding: 20px;
   height: 60px;
   background-color: #001529;
-  padding: 10px;
   box-sizing: border-box;
   display: flex;
   align-items: center;

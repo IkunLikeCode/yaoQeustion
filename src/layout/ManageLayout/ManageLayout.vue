@@ -13,7 +13,6 @@ import MenuList from "./components/MenuList.vue";
 
 <style lang="less" scoped>
 .ManageLayout {
-  width: 1400px;
   margin: 0 auto;
   display: flex;
   height: calc(100vh - 60px);

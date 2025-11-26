@@ -47,10 +47,10 @@ async function login(ruleFormRef: FormInstance | null) {
     <div class="container">
       <div class="title">用户登录</div>
       <el-form ref="formRef" :rules="rules" :model="formData" label-position="right" class="form">
-        <el-form-item label="账号:" prop="loginId" label-width="90px">
+        <el-form-item label="账号:" prop="loginId">
           <el-input v-model.trim="formData.loginId" class="input" placeholder="请输入账号"></el-input>
         </el-form-item>
-        <el-form-item label="密码:" prop="password" label-width="90px">
+        <el-form-item label="密码:" prop="password">
           <el-input
             v-model.trim="formData.password"
             class="input"
@@ -59,7 +59,10 @@ async function login(ruleFormRef: FormInstance | null) {
             placeholder="请输入密码"
           ></el-input>
         </el-form-item>
-        <el-form-item label-width="50%">
+        <el-form-item>
+          <el-link type="primary" @click="router.push('/register')">注册账号</el-link>
+        </el-form-item>
+        <el-form-item>
           <el-button type="primary" class="btn" @click="login(formRef)">登录</el-button>
         </el-form-item>
       </el-form>
@@ -102,6 +105,9 @@ async function login(ruleFormRef: FormInstance | null) {
         width: 100%;
       }
     }
+  }
+  .btn {
+    width: 100%;
   }
 }
 </style>

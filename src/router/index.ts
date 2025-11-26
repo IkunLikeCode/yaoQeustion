@@ -51,7 +51,12 @@ router.beforeEach(async (to, _from, next) => {
   if (!questionToken) {
     // 如果访问的不是登录页，重定向到登录页
     if (to.path !== "/login") {
+      if (to.path === "/register") {
+        next();
+        return;
+      }
       next({ path: "/login" });
+      return;
     } else {
       next();
     }

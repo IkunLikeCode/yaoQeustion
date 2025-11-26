@@ -8,6 +8,12 @@ const userStore = useUserStore();
 function logout() {
   removeLocalStorage("questionToken");
   userStore.isLogin = false;
+  userStore.userInfo = {
+    username: "",
+    avatar: "",
+    nickname: "",
+    id: ""
+  };
   router.push("/login");
 }
 </script>
@@ -15,12 +21,12 @@ function logout() {
 <!-- 该组件是显示用户选项的组件 -->
 <template>
   <div class="optionsCom">
-    <el-dropdown>
-      <el-avatar :size="50" src="../../../public/log.png" />
-      <!-- <img :src="userStore.userInfo?.avatar" alt="用户头像" style="width: 50px; height: 50px; border-radius: 50%" /> -->
+    <el-dropdown v-if="userStore.isLogin">
+      <div class="avatar">
+        <el-avatar :size="50" :src="userStore.userInfo?.avatar" />
+      </div>
       <template #dropdown>
         <el-dropdown-menu>
-          <el-dropdown-item>个人中心</el-dropdown-item>
           <el-dropdown-item @click="logout">退出登录</el-dropdown-item>
         </el-dropdown-menu>
       </template>
@@ -31,5 +37,9 @@ function logout() {
 <style lang="less" scoped>
 .optionsCom {
   padding: 0 20px 0 0;
+  .avatar {
+    display: flex;
+    align-items: center;
+  }
 }
 </style>

@@ -9,10 +9,10 @@ const router = useRouter();
 const userStore = useUserStore();
 const formRef = useTemplateRef<FormInstance>("formRef");
 const formData = reactive({
-  username: "小帅",
-  password: "yaobo2003",
-  confirmPassword: "yaobo2003",
-  loginId: "1517097077"
+  username: "",
+  password: "",
+  confirmPassword: "",
+  loginId: ""
 });
 
 const rules = reactive<FormRules<typeof formData>>({
@@ -91,7 +91,10 @@ async function register(ruleFormRef: FormInstance | null) {
             placeholder="请确认密码"
           ></el-input>
         </el-form-item>
-        <el-form-item label-width="50%">
+        <el-form-item>
+          <el-link type="primary" @click="router.push('/login')">登录账号</el-link>
+        </el-form-item>
+        <el-form-item>
           <el-button type="primary" class="btn" @click="register(formRef)">注册</el-button>
         </el-form-item>
       </el-form>
@@ -133,6 +136,9 @@ async function register(ruleFormRef: FormInstance | null) {
         width: 100%;
       }
     }
+  }
+  .btn {
+    width: 100%;
   }
 }
 </style>
