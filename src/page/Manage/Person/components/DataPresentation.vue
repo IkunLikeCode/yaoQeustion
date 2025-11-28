@@ -23,7 +23,7 @@ async function getPersonQuestionWriteCountAction() {
 }
 
 const datasetCmp = computed(() => {
-  if (personQuestionWriteCount.data.length === 0) {
+  if (!personQuestionWriteCount.data) {
     return [];
   }
   return personQuestionWriteCount.data.map(item => {
