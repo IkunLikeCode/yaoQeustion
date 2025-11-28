@@ -26,10 +26,10 @@ export default defineConfig({
     RouterPathPlugin(),
     vue(),
     AutoImport({
-      resolvers: [ElementPlusResolver()]
+      resolvers: [ElementPlusResolver({ importStyle: "css" })]
     }),
     Components({
-      resolvers: [ElementPlusResolver()]
+      resolvers: [ElementPlusResolver({ importStyle: "css" })]
     })
   ],
   resolve: {
@@ -45,5 +45,24 @@ export default defineConfig({
       }
     },
     host: "0.0.0.0"
+  },
+  build: {
+    chunkSizeWarningLimit: 800,
+    rollupOptions: {
+      output: {
+        manualChunks(id) {
+          if (id.includes("node_modules")) {
+            if (/node_modules\/vue(\/|$)/.test(id) || /node_modules\/@vue\//.test(id)) return "vendor-vue";
+            if (/node_modules\/vue-router\//.test(id)) return "vendor-vue-router";
+            if (/node_modules\/pinia\//.test(id)) return "vendor-pinia";
+            if (/node_modules\/element-plus\//.test(id)) return "vendor-element-plus";
+            if (/node_modules\/axios(\/|$)/.test(id)) return "vendor-axios";
+            if (/node_modules\/vue-data-ui\//.test(id)) return "vendor-charts";
+            return "vendor";
+          }
+          // 保持应用代码按路由懒加载默认切分，避免强制合并引发执行顺序问题
+        }
+      }
+    }
   }
 });
