@@ -16,7 +16,6 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "22"
-          cache: ""
 
       - name: Install dependencies
         run: npm install
@@ -24,16 +23,17 @@ jobs:
       - name: Build project
         run: npm run build
 
-      - name: List build files
-        run: ls -la dist/
-
       - name: Deploy to server
-        uses: easingthemes/ssh-deploy@v4
-        with:
-          SSH_PRIVATE_KEY: ${{ secrets.SERVER_SSH_KEY }}
-          REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
-          REMOTE_USER: ${{ secrets.REMOTE_USER }}
-          REMOTE_PORT: ${{ secrets.REMOTE_PORT }}
-          SOURCE: "dist/"
-          TARGET: ${{ secrets.REMOTE_TARGET }}
-          ARGS: "-avz --delete"
+        run: |
+          # 设置 SSH
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SERVER_SSH_KEY }}" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+
+          # 部署构建的文件
+          echo "🚀 开始部署..."
+          rsync -avz --progress --delete \
+            -e "ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no -p ${{ secrets.REMOTE_PORT }}" \
+            dist/ ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }}:${{ secrets.REMOTE_TARGET }}/
+
+          echo "✅ 部署完成!"
