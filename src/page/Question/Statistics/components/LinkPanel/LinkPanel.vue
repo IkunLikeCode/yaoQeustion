@@ -28,7 +28,7 @@ defineProps<{
       <el-input
         ref="inputRef"
         class="link"
-        :value="'http://localhost:3000/question/' + route.query.id"
+        :value="'http://115.190.61.20/question/' + route.query.id"
         placeholder="请输入搜索内容"
       ></el-input>
       <el-button type="primary" @click="copyLink">复制</el-button>
