@@ -23,6 +23,9 @@ async function getPersonQuestionWriteCountAction() {
 }
 
 const datasetCmp = computed(() => {
+  if (personQuestionWriteCount.data.length === 0) {
+    return [];
+  }
   return personQuestionWriteCount.data.map(item => {
     return {
       name: item.title,
