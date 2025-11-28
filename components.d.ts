@@ -11,8 +11,6 @@ declare module 'vue' {
     ElButton: typeof import('element-plus/es')['ElButton']
     ElImage: typeof import('element-plus/es')['ElImage']
     ElLink: typeof import('element-plus/es')['ElLink']
-    ElPagination: typeof import('element-plus/es')['ElPagination']
-    ElPopconfirm: typeof import('element-plus/es')['ElPopconfirm']
     LogCom: typeof import('./src/components/log/logCom.vue')['default']
     NotData: typeof import('./src/components/NotData/NotData.vue')['default']
     OptionsCom: typeof import('./src/components/options/optionsCom.vue')['default']

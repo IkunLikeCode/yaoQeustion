@@ -8,7 +8,7 @@ export default {
     isChild: true
   },
   component: () => import("@/layout/ManageLayout/ManageLayout.vue"),
-  redirect: "/manage/listQuestion",
+  redirect: "/manage/personCenter",
   children: [
     {
       path: "/manage/listQuestion",
