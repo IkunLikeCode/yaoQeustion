@@ -16,7 +16,6 @@ async function saveQuestionHandle() {
   publishQuestion("save");
 }
 async function publishQuestion(saveOrPublish: string = "publish") {
-  console.log(1);
   const questionInfo = reactive<any>({
     title: questionStore.questionInfo?.questionTitle || "",
     desc: questionStore.questionInfo?.questionDesc || "",

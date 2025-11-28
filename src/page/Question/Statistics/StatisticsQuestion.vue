@@ -7,6 +7,7 @@ import TablePanel from "./components/TablePanel/TablePanel.vue";
 import { useRoute } from "vue-router";
 import { getStatisticsById } from "@/api/statistics/index";
 import type { ComponentInfoType } from "@/store/module/question";
+import { ElMessage } from "element-plus";
 interface IStatisticsData {
   count: number;
   statistics: any;
@@ -30,8 +31,8 @@ async function getStatisticsByIdApi(id: string) {
     const result = await getStatisticsById<IStatisticsData>(id);
     statisticsData.count = result.count;
     statisticsData.statistics = result.statistics;
-  } catch (error) {
-    console.log(error);
+  } catch (error: any) {
+    ElMessage.error(error.message || "获取统计信息失败");
   }
 }
 

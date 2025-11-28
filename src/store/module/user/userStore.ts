@@ -3,6 +3,7 @@ import { getUserInfo, login, register } from "@/api/user";
 import type { LoginInfoType, RegisterInfoType } from "@/api/user/type";
 import { setLocalStorage } from "@/utils/localStoreage";
 import type { LoginSuccessType, UserInfoType } from "./type";
+import { ElMessage } from "element-plus";
 interface userStoreState {
   isLogin: boolean;
   userInfo: {
@@ -34,7 +35,7 @@ export const useUserStore = defineStore("user", {
           confirmPassword: confirmPassword || ""
         });
       } catch (error: any) {
-        console.log(error.message);
+        ElMessage.error(error.message || "注册失败");
         throw error; // 重新抛出错误，让组件能够捕获
       }
     },
@@ -46,7 +47,7 @@ export const useUserStore = defineStore("user", {
         // 登录成功后获取用户信息
         await this.getUserInfo();
       } catch (error: any) {
-        console.log(error.message);
+        ElMessage.error(error.message || "登录失败");
         throw error; // 重新抛出错误，让组件能够捕获
       }
     },
