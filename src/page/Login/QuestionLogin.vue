@@ -8,8 +8,8 @@ import type { LoginInfoType } from "@/api/user/type";
 
 const formRef = useTemplateRef<FormInstance | null>("formRef");
 const formData = shallowReactive<LoginInfoType>({
-  loginId: "1469025063",
-  password: "yaobo2003"
+  loginId: "",
+  password: ""
 });
 const rules = shallowReactive<FormRules<typeof formData>>({
   loginId: [
